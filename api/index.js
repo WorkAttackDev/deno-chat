@@ -12,15 +12,19 @@ router
     context.response.body = messages;
   })
   .post("/messages", async (context) => {
-    const message = await context.response.body().value;
-    messages.push(message);
-    context.response.body = messages;
+    try {
+      const message = await context.response.body().value;
+      messages.push(message);
+      context.response.body = messages;
+    } catch (error) {
+      context.response.body = { error: error.message };
+    }
   });
 
 const app = new Application();
 
 app.use(oakCors());
-app.use(router.routes());
 app.use(router.allowedMethods());
+app.use(router.routes());
 
 addEventListener("fetch", app.fetchEventHandler());
