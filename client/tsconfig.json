@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "lib": [
+      "DOM",
+      "ES2015"
+    ],
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "jsx": "react"
+  }
+}
