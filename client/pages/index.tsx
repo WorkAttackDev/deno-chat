@@ -10,7 +10,7 @@ export default function Home() {
 
   const getMessages = useCallback(async () => {
     const res = await fetch("https://wa-chat-api.deno.dev/messages");
-    const data = res.json();
+    const data = await res.json();
 
     setMessages(data);
   }, []);
@@ -29,7 +29,9 @@ export default function Home() {
         headers: [["content-type", "application/json"]],
       });
 
-      setMessages(res);
+      const data = await res.json();
+
+      setMessages(data);
     },
     [text]
   );
